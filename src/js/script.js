@@ -1,3 +1,4 @@
+'use strict';
 const numbersOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
 const oneFromLastFilm = prompt('Один из последних просмотренных фильмов?', ''); 
 const whatGrageFilm = prompt('На сколько оцените его?', '');
