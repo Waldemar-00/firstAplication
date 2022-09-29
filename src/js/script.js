@@ -36,7 +36,7 @@ function questionAboutAmountOfFilms() {
 for(let i = 0; i < 1; i++) {
     numbersOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
     personalMovieDB.count = numbersOfFilms;
-    if(numbersOfFilms === '' || numbersOfFilms === null ) {
+    if(numbersOfFilms === '' || numbersOfFilms === null || isNaN(numbersOfFilms) ) {
         --i;
         continue loop1;
     }else break;
