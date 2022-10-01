@@ -34,12 +34,12 @@ const personalMovieDB = {
 function questionAboutAmountOfFilms() {
     loop1:
 for(let i = 0; i < 1; i++) {
-    numbersOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
-    personalMovieDB.count = numbersOfFilms;
+    numbersOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '').trim();
     if(numbersOfFilms === '' || numbersOfFilms === null || isNaN(numbersOfFilms) ) {
         --i;
         continue loop1;
-    }else break;
+    }
+    personalMovieDB.count = numbersOfFilms;
 }
 return numbersOfFilms;
 }
@@ -49,14 +49,14 @@ function questionAboutLastOfFilms() {
     for (let i = 0; i < 2; i++) {
         loop12:
     for(let i = 0; i < 1; i++) { 
-    oneFromLastFilm = prompt('Один из последних просмотренных фильмов?', '');
-    whatGrageFilm = prompt('На сколько оцените его?', '');
-    personalMovieDB.movies[oneFromLastFilm] = whatGrageFilm;
-    if(oneFromLastFilm === '' || oneFromLastFilm === null || oneFromLastFilm.length > 50 || whatGrageFilm === '' || whatGrageFilm === null) {
+    oneFromLastFilm = prompt('Один из последних просмотренных фильмов?', '').trim();
+    whatGrageFilm = prompt('На сколько оцените его?', '').trim();
+    if(oneFromLastFilm.trim() === '' || oneFromLastFilm === null || oneFromLastFilm.length > 50 || whatGrageFilm === '' || whatGrageFilm === null) {
         --i;
         continue loop12;
-    }else break;
-}
+    }
+    personalMovieDB.movies[oneFromLastFilm] = whatGrageFilm;
+    }
     }
 return oneFromLastFilm, whatGrageFilm;
 }
@@ -78,8 +78,14 @@ function showMyDB() {
 showMyDB();
 
 function writeYourGenres() {
+    loop3:
     for(let i = 1; i < 4; i++) {
-        let whatGenresDoYouLike = prompt(`Ваш любимый жанр под номером ${i}`, '');
+        let whatGenresDoYouLike = prompt(`Ваш любимый жанр под номером ${i}`, '').trim();
+        if(whatGenresDoYouLike === '' || whatGenresDoYouLike === null || whatGenresDoYouLike === Number) {
+            --i;
+            continue loop3;
+        }
+        
         personalMovieDB.genres.push(whatGenresDoYouLike);
     }
         return personalMovieDB.genres;
