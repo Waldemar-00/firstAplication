@@ -218,34 +218,48 @@ console.log(square.calcArea);*/
 
 //! Deacriptors
 // 'use strict';
-const obj = {
-    a: 1, 
-    b: 2, 
-    c: 3
-};
-Object.defineProperty(obj, 'name', {
-    value: 'Daive',
-    /* writable: true,//default: false*/
-       enumerable: true,//default: false
-      /* configurable: true//default: false */
-});
+// const obj = {
+    // a: 1, 
+    // b: 2, 
+    // c: 3
+// };
+// Object.defineProperty(obj, 'name', {
+    // value: 'Daive',
+    // /* writable: true,//default: false*/
+    //    enumerable: true,//default: false
+    //   /* configurable: true//default: false */
+// });
+// 
+// /*obj.name = 'Serg';//?ERROR in STRICT else error only  not show, but it will be*/
+// 
+// const descriptor = Object.getOwnPropertyDescriptor(obj, 'name');
+// console.log(descriptor);
+// console.log(obj.name);
+// console.log('_____________');
+// Object.defineProperty(obj, 'c', {
+    // enumerable: false,
+// } );
+// for(let value in obj) {
+    // console.log(value);//enumerable false - not show property
+// }
+// console.log('_____________');
+// const clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
+// console.log(clone);
+// 
+//! data-properties && data-accessor
+const object = {
+    name: 'Djeck',
+    lastName: 'Brown',
 
-/*obj.name = 'Serg';//?ERROR in STRICT else error only  not show, but it will be*/
-
-const descriptor = Object.getOwnPropertyDescriptor(obj, 'name');
-console.log(descriptor);
-console.log(obj.name);
-console.log('_____________');
-Object.defineProperty(obj, 'c', {
-    enumerable: false,
-} );
-for(let value in obj) {
-    console.log(value);//enumerable false - not show property
+    get fullName() {
+        return `${this.name} ${this.lastName}`;//?data-accessor
+    },
+    set fullName(value) {
+        [this.name, this.lastName] = value.split(' ');
+    }
 }
-console.log('_____________');
-const clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
-console.log(clone);
-
-
+console.log(object.fullName);
+object.fullName = 'Maria Rettris';
+console.log(object.fullName);
 
 
