@@ -196,23 +196,56 @@ console.log(square.calcArea);*/
 
 //! new Set();
 
-let john = {name: "John"};
-let mary = {name: "Mary"};
-let peter = {name: "Peter"};
-let dori = ['Dori'];
-let firstName = 'Sara';
+// let john = {name: "John"};
+// let mary = {name: "Mary"};
+// let peter = {name: "Peter"};
+// let dori = ['Dori'];
+// let firstName = 'Sara';
+// 
+// let set = new Set();
+// set.add(john);
+// set.add(mary);
+// set.add(peter);
+// set.add(john);
+// set.add(mary);
+// set.add(john);
+// set.add(dori);
+// set.add(firstName);
+// console.log(set);
+// console.log(set.values());
+// console.log(set.keys());
+// console.log(set.entries());
 
-let set = new Set();
-set.add(john);
-set.add(mary);
-set.add(peter);
-set.add(john);
-set.add(mary);
-set.add(john);
-set.add(dori);
-set.add(firstName);
-console.log(set);
-console.log(set.values());
-console.log(set.keys());
-console.log(set.entries());
+//! Deacriptors
+// 'use strict';
+const obj = {
+    a: 1, 
+    b: 2, 
+    c: 3
+};
+Object.defineProperty(obj, 'name', {
+    value: 'Daive',
+    /* writable: true,//default: false*/
+       enumerable: true,//default: false
+      /* configurable: true//default: false */
+});
+
+/*obj.name = 'Serg';//?ERROR in STRICT else error only  not show, but it will be*/
+
+const descriptor = Object.getOwnPropertyDescriptor(obj, 'name');
+console.log(descriptor);
+console.log(obj.name);
+console.log('_____________');
+Object.defineProperty(obj, 'c', {
+    enumerable: false,
+} );
+for(let value in obj) {
+    console.log(value);//enumerable false - not show property
+}
+console.log('_____________');
+const clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
+console.log(clone);
+
+
+
 
