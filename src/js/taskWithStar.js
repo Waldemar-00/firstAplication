@@ -247,19 +247,32 @@ console.log(square.calcArea);*/
 // console.log(clone);
 // 
 //! data-properties && data-accessor
-const object = {
-    name: 'Djeck',
-    lastName: 'Brown',
+// const object = {
+    // name: 'Djeck',
+    // lastName: 'Brown',
+// 
+    // get fullName() {
+        // return `${this.name} ${this.lastName}`;//?data-accessor
+    // },
+    // set fullName(value) {
+        // [this.name, this.lastName] = value.split(' ');
+    // }
+// }
+// console.log(object.fullName);
+// object.fullName = 'Maria Rettris';
+// console.log(object.fullName);
 
-    get fullName() {
-        return `${this.name} ${this.lastName}`;//?data-accessor
-    },
-    set fullName(value) {
-        [this.name, this.lastName] = value.split(' ');
-    }
-}
-console.log(object.fullName);
-object.fullName = 'Maria Rettris';
-console.log(object.fullName);
+// const obj = {
+    // a: 1, 
+    // b: 2, 
+    // c: 3, 
+    // d: {
+        // name: 'Alesia',
+        // lastName: 'Ferba'
+    // }
+// }
+// const objLen = Object.keys(obj).length;
+// console.log(objLen);
+
 
 
