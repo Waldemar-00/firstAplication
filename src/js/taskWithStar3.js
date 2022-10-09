@@ -89,19 +89,79 @@
 // 
 // // - Данные для первого аргумента должны приходить сразу из двух банков, причем сначала baseCurrencies, потом additionalCurrencies по порядку
 
-const baseCurrencies = ['USD', 'EUR'];
-const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+// const baseCurrencies = ['USD', 'EUR'];
+// const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+// 
+// function availableCurr(arr, missingCurr) {
+    // let str = 'Доступные валюты:\n';
+    // if(!arr[0])return 'Нет доступных валют';
+    // for(let i of arr) {
+        // if(i === missingCurr)continue;
+        // else {
+            // str += `${i}\n`;
+        // }
+    // }
+// 
+    // return str;
+// }
+// console.log(availableCurr(['UAH', 'RUB', 'CNY'], 'CNY'));
+// 
 
-function availableCurr(arr, missingCurr) {
-    let str = 'Доступные валюты:\n';
-    if(!arr[0])return 'Нет доступных валют';
-    for(let i of arr) {
-        if(i === missingCurr)continue;
-        else {
-            str += `${i}\n`;
-        }
-    }
+//! const obj = {1: 'a', 2: 'b'};
+//! console.log(Object.getPrototypeOf(obj));
+//! console.log(Object.getOwnPropertyDescriptors(obj));
+//! const clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
+//! console.log(clone);
+//! console.log(Object.getPrototypeOf(clone));
+//! console.log(Object.getOwnPropertyDescriptors(clone));
 
-    return str;
-}
-console.log(availableCurr(['UAH', 'RUB', 'CNY'], 'CNY'));
+// function makeCar(make, model, year, owner) {
+    // this.make = make;
+    // this.model = model;
+    // this.year = year;
+    // this.owner = owner;
+// }
+// const makeObj = new makeCar('USA', 'Colorado', 1997);
+// 
+// console.log(makeObj);
+// 
+// function Person(name, age, sex) {
+    // this.name = name;
+    // this.age = age;
+    // this.sex = sex;
+// }
+// const rand = new Person("Rand McNally", 33, "M");
+// const ken = new Person("Ken Jones", 39, "M");
+// const car1 = new makeCar("Eagle", "Talon TSi", 1993, rand);
+// const car2 = new makeCar("Nissan", "300ZX", 1992, ken);
+// console.info(car1,'________', car2);
+// console.log(car1.owner.sex, '___', car2.owner.sex);
+
+// const str = 'string';
+// const objString = new String(str);
+//console.log(`${str}\n`, objString);
+// console.dir(objString);
+// console.dir(str);
+
+const sectionCss = {
+    width: '100%',
+    height: '100vh',
+    backgroundColor: 'black'
+};
+const sectionFloor = {own: 'property'};
+Object.setPrototypeOf(sectionFloor, sectionCss);
+// console.log(Object.getPrototypeOf(sectionFloor));
+// console.log(Object.getOwnPropertyDescriptors(sectionFloor));
+// const sectionFloor = Object.create(sectionCss, { height: {
+    // value: '30vh'
+// }
+// }
+// ); 
+// console.info(Object.getPrototypeOf(sectionFloor));
+// const clone = Object.create(Object.getPrototypeOf(sectionFloor), Object.getOwnPropertyDescriptors(sectionFloor));
+// console.log(typeof clone);
+// console.log(Object.getOwnPropertyDescriptors(clone));
+// 
+const str = null;
+const strNull = str.trim();
+console.log(strNull);
