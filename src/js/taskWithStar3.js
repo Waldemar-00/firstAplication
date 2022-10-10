@@ -143,13 +143,13 @@
 // console.dir(objString);
 // console.dir(str);
 
-const sectionCss = {
-    width: '100%',
-    height: '100vh',
-    backgroundColor: 'black'
-};
-const sectionFloor = {own: 'property'};
-Object.setPrototypeOf(sectionFloor, sectionCss);
+// const sectionCss = {
+    // width: '100%',
+    // height: '100vh',
+    // backgroundColor: 'black'
+// };
+// const sectionFloor = {own: 'property'};
+// Object.setPrototypeOf(sectionFloor, sectionCss);
 // console.log(Object.getPrototypeOf(sectionFloor));
 // console.log(Object.getOwnPropertyDescriptors(sectionFloor));
 // const sectionFloor = Object.create(sectionCss, { height: {
@@ -162,6 +162,9 @@ Object.setPrototypeOf(sectionFloor, sectionCss);
 // console.log(typeof clone);
 // console.log(Object.getOwnPropertyDescriptors(clone));
 // 
-const str = null;
-const strNull = str.trim();
-console.log(strNull);
+// const str = null;
+// const strNull = str.toUpperCase();
+// console.log(strNull);//!ERROR LIKE WITH trim()
+
+let str = 'aaaaa, bbbb, cccc';
+console.log(str.toLocaleUpperCase());
