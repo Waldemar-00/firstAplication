@@ -54,9 +54,9 @@ const personalMovieDB = {
 
         }
 };
-// personalMovieDB.questionAboutAmountOfFilms();
-// personalMovieDB.questionAboutLastOfFilms();
-// personalMovieDB.answerForViewer();
-// personalMovieDB.showMyDB();
+personalMovieDB.questionAboutAmountOfFilms();
+personalMovieDB.questionAboutLastOfFilms();
+personalMovieDB.answerForViewer();
+personalMovieDB.showMyDB();
 personalMovieDB.writeYourGenres();
 personalMovieDB.withdrawGenres();
