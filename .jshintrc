@@ -11,6 +11,5 @@
 	"devel": true,
 	"jquery": true,
     "esversion": 9,
-    "node": true,
-	"debugger": true
+    "node": true
 }
