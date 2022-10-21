@@ -47,11 +47,11 @@
 // console.log(document.querySelector('[data-hiden="false"]').previousSibling);
 // console.log(document.querySelector('[data-hiden="false"]').previousElementSibling);
 
-console.log(document.body.childNodes);
-
-for(let node of document.body.childNodes) {
-    if(node.nodeName === "#text")continue;
-    console.log(node);
-}
+// console.log(document.body.childNodes);
+// 
+// for(let node of document.body.childNodes) {
+    // if(node.nodeName === "#text")continue;
+    // console.log(node);
+// }
 
 
