@@ -85,3 +85,11 @@ const rez = getStudentsProgress(students);
 
 console.log(rez);
 console.log(rez[0] / rez[1]);
+
+function getFactorial(n) {
+    if(n === 0)return 1;
+    if(n % 1 !== 0 || isNaN(n))return 'Write number from zero and more, and not fractional number';
+    if(n <= 0)return 1;
+    return n * getFactorial(n - 1);
+}
+console.log(getFactorial(5.5));
