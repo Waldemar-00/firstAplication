@@ -20,13 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const promoInteractiveList = document.querySelector('.promo__interactive-list');
-    const childrenOfPromoInteractiveList = promoInteractiveList.children;//? verify children VS querySelectorAll!!!!
-
+    const childrenOfPromoInteractiveList = promoInteractiveList.children;
+   
     function arrange(array, list) {
         array.sort();
-        for(let i = 0; i < list.length; i++) {
+        for(let i = 0; i < array.length; i++) {
+            if(array[i] == undefined)continue;   
         list[i].textContent = `${i + 1} ${array[i]}`;
-    }
+        list[i].style.cssText = 'cursor: pointer';
+        }
     }
     arrange(movieDB.movies, childrenOfPromoInteractiveList);
 
@@ -42,8 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
         newElement.className = 'promo__interactive-item';
         newElement.textContent = text;
         parent.append(newElement);
+        console.log(childrenOfPromoInteractiveList);
     }
     function deleteEvent() {
+        console.dir(childrenOfPromoInteractiveList);
+        console.log(movieDB.movies);
         if(input.value == 0)return;
         else if (input.value.length > 21) {
         let movie = `${input.value.slice(0, 21)}...`;
@@ -53,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     createElement('li', ' ', promoInteractiveList);
     arrange(movieDB.movies, childrenOfPromoInteractiveList);
+    removeElements(childrenOfPromoInteractiveList);
     button.removeEventListener('click', deleteEvent);
     console.log(movieDB.movies);
     }
@@ -61,6 +67,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (checkbox.checked)console.log("Добавляем любимый фильм");
     });
 
+    function removeElements(list) {
+        let arr = Array.from(list);
+        for (let i in arr) {
+            arr[i].onclick = () => {
+                if( confirm('Delete movie?') ) {
+                    list[i].remove();
+                    movieDB.movies.splice(i, 1, undefined);
+                    movieDB.movies.sort();
+                    console.log(movieDB.movies);
+                    arrange(movieDB.movies, list);
+                    }
+                };
+        }
+    }
+    removeElements(childrenOfPromoInteractiveList);
 
 //! Second task
 /* Задания на урок:
