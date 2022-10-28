@@ -255,7 +255,7 @@
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    background: url("../icons/trash.png") center center/cover no-repeat;
+    background: url("../icons/trash-104-48.svg") center center/cover no-repeat;
     cursor:pointer
     }
     .promo__interactive .add .promo__interactive-title {
