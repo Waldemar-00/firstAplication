@@ -40,8 +40,10 @@
 // console.log("str", str);
 // console.log("newStr", newStr);
 
-//! SPLIT 
+// ! SPLIT 
 
 const str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 console.log(str.split('').reverse().join(''));
 console.log(str);
+
+// 
