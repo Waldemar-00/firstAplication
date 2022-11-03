@@ -73,64 +73,77 @@
 // console.log( iter.next().value );
 // console.log( iter.next().value );
 
-const arr = [4];
-const array = [1, 2, 3];
-Array.prototype.methodArray = function() {
-    return 10 + 10;
-};
+// const arr = [4];
+// const array = [1, 2, 3];
+// Array.prototype.methodArray = function() {
+    // return 10 + 10;
+// };
 // array.forEach(item => console.log(item));
 // for(const item of array)console.log(item);
 // console.dir(array);
-for(const item in arr)console.log(item);
-console.log('__________');
-for(const item in array)console.log(item);
+// for(const item in arr)console.log(item);
+// console.log('__________');
+// for(const item in array)console.log(item);
+// 
+// const obj = {
+    // a: 1,
+// }
+// const object = {value: 1};
+// Object.prototype.methodObject = function() {};
+// for(const key in obj)console.log(key);
+// console.log('_______');
+// for(const key in object)console.log(key);
+// 
+// const objectWithSymbolIterator = {
+    // salaryFrom: 0,
+    // Ann: 500,
+    // John: 1000,
+    // Mike: 1500,
+// }
+// objectWithSymbolIterator[Symbol.iterator] = function() {
+    // return {
+        // start: this.salaryFrom,
+        // end: this.Mike,
+        // next() {
+            // if(this.start < this.end) {
+                // this.start += 500;
+                // return {
+                    // done: false,
+                    // value: this.start,
+                // }
+            // }else return {done: true};
+        // },
+    // }
+// }
+// for(const i of objectWithSymbolIterator)console.log(i);
+// 
+// const iterator = objectWithSymbolIterator[Symbol.iterator]();
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// 
+// 
 
-const obj = {
-    a: 1,
+
+function Auto(brand, color, price) {
+    this.brand = brand;
+    this.color = color;
+    this.price = price;
 }
-const object = {value: 1};
-Object.prototype.methodObject = function() {};
-for(const key in obj)console.log(key);
-console.log('_______');
-for(const key in object)console.log(key);
+const nissan = new Auto('nissan', 'red', 75000);
+console.log(nissan);
 
-const objectWithSymbolIterator = {
-    salaryFrom: 0,
-    Ann: 500,
-    John: 1000,
-    Mike: 1500,
+Auto.prototype.getMileAge = function(years, km) {
+    return years * km;
 }
-objectWithSymbolIterator[Symbol.iterator] = function() {
-    return {
-        start: this.salaryFrom,
-        end: this.Mike,
-        next() {
-            if(this.start < this.end) {
-                this.start += 500;
-                return {
-                    done: false,
-                    value: this.start,
-                }
-            }else return {done: true};
-        },
-    }
-}
-for(const i of objectWithSymbolIterator)console.log(i);
+console.log(nissan.getMileAge(10, 1000));
 
-const iterator = objectWithSymbolIterator[Symbol.iterator]();
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-
-
-
-
-
-
-
+const bmw = new Auto('bmw', 'blur', 120000);
+console.log(bmw);
+console.log(bmw.getMileAge(10, 1200));
 
 
 
