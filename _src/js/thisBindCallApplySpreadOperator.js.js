@@ -128,22 +128,34 @@
 // 
 
 
-function Auto(brand, color, price) {
-    this.brand = brand;
-    this.color = color;
-    this.price = price;
-}
-const nissan = new Auto('nissan', 'red', 75000);
-console.log(nissan);
+// function Auto(brand, color, price) {
+    // this.brand = brand;
+    // this.color = color;
+    // this.price = price;
+// }
+// const nissan = new Auto('nissan', 'red', 75000);
+// console.log(nissan);
+// 
+// Auto.prototype.getMileAge = function(years, km) {
+    // return years * km;
+// }
+// console.log(nissan.getMileAge(10, 1000));
+// 
+// const bmw = new Auto('bmw', 'blur', 120000);
+// console.log(bmw);
+// console.log(bmw.getMileAge(10, 1200));
+// 
 
-Auto.prototype.getMileAge = function(years, km) {
-    return years * km;
-}
-console.log(nissan.getMileAge(10, 1000));
 
-const bmw = new Auto('bmw', 'blur', 120000);
-console.log(bmw);
-console.log(bmw.getMileAge(10, 1200));
-
-
+// const obj = {
+    // a: 1,
+    // mathod: () => console.log('Prototype'),
+// }
+// 
+// const objFromObj = Object.create(obj);
+// console.log(objFromObj.hasOwnPropertyOf('mathod'));
+// console.log(objFromObj);
+// console.log(objFromObj.prototype);
+// console.log(objFromObj.__proto__ === objFromObj.prototype);
+// console.log(objFromObj.__proto__ === objFromObj.prototype);
 
