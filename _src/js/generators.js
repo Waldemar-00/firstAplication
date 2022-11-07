@@ -77,11 +77,11 @@ console.log(iteration.next());// terminal condition is Infinity => done: true
     // }
 // }
 // getValue();
+// 
 
-const objectIterator = {
-    number: 10,
-    name: 'John',
-    surname: 'Brown',
+function iterateObject(object) {
+    return {
+        ...object,
     [Symbol.iterator]() {
         const arrayKeys = Object.keys(this);
         const limit = arrayKeys.length;
@@ -94,10 +94,17 @@ const objectIterator = {
             }
         }
     }
+    }
+}
+const objectIterator = {
+    number: 10,
+    name: 'John',
+    surname: 'Brown',
 }
 function getValue(object) {
-    for(let i of object) {
+    for(let i of iterateObject(object)) {
         console.log(i);
     }
 }
 getValue(objectIterator);
+console.log(...iterateObject(objectIterator));// get array from object
