@@ -22,10 +22,24 @@
 // button.addEventListener('click', (e) => {
     // if(e.target && e.target.classList.contains('btn'))clearInterval(interval);
 // });
-let count = 0;
-let  logText = setTimeout(function log() {
-        if(count === 4)return;
-        console.log('Hello');
-        count++;
-        logText = setTimeout(log, 1000);
-}, 1000 );
+// let count = 0;
+// let  logText = setTimeout(function log() {
+        // if(count === 4)return;
+        // console.log('Hello');
+        // count++;
+        // logText = setTimeout(log, 1000);
+// }, 1000 );
+
+const blueBox = document.querySelector('.box');
+function moveBox() {
+    blueBox.classList.add('brown');
+    let position = 0;
+    const interval = setInterval(move, 10);
+    function move() {
+        position += 0.2;
+        blueBox.style.left = position + '%';
+        blueBox.style.top = position + '%';
+    if(position >= 75)clearInterval(interval);
+    }
+}
+blueBox.addEventListener('click', moveBox);

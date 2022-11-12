@@ -1,7 +1,7 @@
 .box {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 25%;
+  height: 25%;
   background-color: blue;
 }
 .wrapper {
@@ -17,4 +17,7 @@ button {
   height: 40px;
   background-color: yellow;
   border: none;
+}
+.brown {
+  background-color: brown;
 }
