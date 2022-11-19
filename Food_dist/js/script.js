@@ -89,11 +89,16 @@ window.addEventListener('DOMContentLoaded', () => {
     const close = document.querySelector('[data-close]');
     function addClassShow(event) {
         if(event.target && event.target.matches('[data-modal]')) {
-            modal.classList.add('show', 'fade');
-            modal.classList.remove('hide');
-            document.body.classList.add('hidden');
+            addShow();
         }
     }
+    function addShow() {
+        modal.classList.add('show', 'fade');
+        modal.classList.remove('hide');
+        document.body.classList.add('hidden');
+        clearTimeout(time);
+    }
+    const time = setTimeout(addShow, 30000);
     function addClassHide(event) {
         if((event.target && event.target.matches('[data-close]')) || (event.target && event.target.matches('.modal')) || (event.target && event.code === 'Escape' && modal.classList.contains('show'))) {
             modal.classList.remove('show');
@@ -107,4 +112,12 @@ window.addEventListener('DOMContentLoaded', () => {
     close.addEventListener('click', addClassHide);
     modal.addEventListener('click', addClassHide);
     document.addEventListener('keydown', addClassHide);
+    function openModalScroll(){
+        const body = document.querySelector('body');
+        if(window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 2) { //!    window.scrollY  do not support safari IOS...
+            addShow();
+            window.removeEventListener('scroll', openModalScroll);
+        }
+    }
+    window.addEventListener('scroll', openModalScroll);
 });
