@@ -25,7 +25,7 @@ const Rectangle = class Example_1 { //!!!! Example_1 use for methods, set and ge
         this._cashName = value;
     }
 };
-class Example_3 extends Example { //!!!!!!!!!!!!!! EXTENDS
+class Example_3 extends Example {  //!!!!!!!!!!!!!! EXTEND
     constructor(height, width, sides) {
         super(height, width);
         this.sides = sides;
