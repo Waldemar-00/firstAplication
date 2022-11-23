@@ -520,7 +520,9 @@ a {
     font-size: 24px;
     font-weight: 700
 }
-
+.text__color {
+    color: red;
+}
 .order {
     padding-bottom: 80px
 }

@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     class createMenuItem {
-    constructor(srcImg, altImg, h3Text, blockDescription, price, currency, parentSelector) {
+    constructor(srcImg, altImg, h3Text, blockDescription, price, currency, parentSelector, ...classes) {
         this.srcImg = srcImg;
         this.altImg = altImg;
         this.h3Text = h3Text;
@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
         this.price = price;
         this.currency = currency;
         this.currencyExchange();
+        this.classes = classes;
         this.parent = document.querySelector(parentSelector);
     }
     currencyExchange() {
@@ -15,16 +16,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     render(){
         const div = document.createElement('div');
+        if(this.classes.length === 0)div.classList.add('menu__item');
+        else this.classes.forEach(el => div.classList.add(el));
         div.innerHTML = 
-    `<div class="menu__item">
-        <img src=${this.srcImg} alt=${this.altImg}>
+        `<img src=${this.srcImg} alt=${this.altImg}>
         <h3 class="menu__item-subtitle">${this.h3Text}</h3>
         <div class="menu__item-descr">${this.blockDescription}</div>
         <div class="menu__item-divider"></div>
         <div class="menu__item-price">
         <div class="menu__item-cost">Цена:</div>
-        <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
-    </div>`;
+        <div class="menu__item-total"><span>${this.price}</span> грн/день</div>`;
     this.parent.append(div);
         
     }
@@ -37,7 +38,9 @@ new createMenuItem(
     ' Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов.Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
     9,
     27, 
-    '.menu .container' ).render(); //! create object, еру method will work, and all will delete from memory!!!
+    '.menu .container',
+    'menu__item',
+     ).render(); //! create object, еру method will work, and all will delete from memory!!!
 
 new createMenuItem(
     "img/tabs/elite.jpg",
@@ -46,7 +49,9 @@ new createMenuItem(
     'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд.Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
     12,
     27, 
-    '.menu .container' ).render(); //! create object, еру method will work, and all will delete from memory!!!
+    '.menu .container',
+    'menu__item', 
+    ).render(); //! create object, еру method will work, and all will delete from memory!!!
 
 new createMenuItem(
     "img/tabs/post.jpg",
@@ -55,5 +60,8 @@ new createMenuItem(
     ' Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
     7,
     27, 
-    '.menu .container' ).render(); //! create object, еру method will work, and all will delete from memory!!!
+    '.menu .container',
+    'menu__item',
+    'text__color',//? for test
+    ).render(); //! create object, еру method will work, and all will delete from memory!!!
 });
