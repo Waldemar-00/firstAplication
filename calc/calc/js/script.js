@@ -1,7 +1,7 @@
 'use strict';
 const rub = document.querySelector('#rub');
 const usd = document.querySelector('#usd');
-const array = ['GET', 'js/current.json'];
+const array = ['GET', 'js/current1.json'];
 function wrapperRequest() {
     function getRequest(request, url) { //!async, login, password
     const createRequest = new XMLHttpRequest();
@@ -10,8 +10,8 @@ function wrapperRequest() {
     createRequest.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     createRequest.send();
 
-    createRequest.addEventListener('readystatechange', () => {
-        if(createRequest.readyState === 4 && createRequest.status === 200) {
+    createRequest.addEventListener('load', () => {
+        if(createRequest.status === 200) {
             console.log(createRequest.response);
             const data = JSON.parse(createRequest.response);
             console.log(data);
