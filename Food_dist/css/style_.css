@@ -736,3 +736,14 @@ a {
     animation-name: fade;
     animation-duration: 1.6s;
 }
+.status {
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    color: brown;
+    position: absolute;
+    top: 45%;
+    left: 20%;
+    z-index: 100;
+}
+

@@ -1,5 +1,6 @@
+'user strict';
 window.addEventListener('DOMContentLoaded', () => {
-    //! tabs
+//! tabs
     const tabheader__item = document.querySelectorAll('.tabheader__item');
     const tabcontent = document.querySelectorAll('.tabcontent');
     const tabheader__items = document.querySelector('.tabheader__items');
@@ -41,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
     tabheader__items.addEventListener('click', clickOnParent);
-    //! timer
+//! timer
     const deadLine = '2022-12-1';
     function getTimeRemaining(endDate) {
         const timeNow = Date.now();
@@ -83,7 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
         return updateTimer();
     }
     setTimerOnPage('.timer', deadLine);
-    //! modal
+//! modal
     const buttons = document.querySelectorAll('[data-modal]');
     const modal = document.querySelector('.modal');
     const close = document.querySelector('[data-close]');
@@ -120,4 +121,47 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.addEventListener('scroll', openModalScroll);
+//! form
+    const forms = document.querySelectorAll('form');
+    const statusMesseges = {
+        loading: 'Загрузка!',
+        success: 'Успех! Скоро мы с вами свяжемся!',
+        failure: 'Что-то пошло не так!',
+    };
+    function resetAndRemove() {
+        
+    }
+    forms.forEach(form => postData(form));
+    function postData(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const statusMesseg = document.createElement('div');
+            statusMesseg.classList.add('status');
+            statusMesseg.textContent = statusMesseges.loading;
+            form.append(statusMesseg);
+
+            const request = new XMLHttpRequest();
+            request.open('POST', 'server.php');
+            const formData = new FormData(form);
+            request.send(formData);
+            request.addEventListener('load', () => {
+                if(request.status === 200) {
+                    console.log(request.response, '---', 'Data was loaded, thanks!');
+                    statusMesseg.textContent = statusMesseges.success;
+                    form.reset();
+                    setTimeout(() => {
+                        statusMesseg.remove();
+                    }, 4000);
+                }else {
+                    console.log('Sorry, try again! Please!');
+                    statusMesseg.textContent = statusMesseges.failure;
+                    form.reset();
+                    setTimeout(() => {
+                    statusMesseg.remove();
+                    }, 4000);
+                }
+            });
+        });
+    }
+
 });
