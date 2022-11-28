@@ -128,9 +128,6 @@ window.addEventListener('DOMContentLoaded', () => {
         success: 'Успех! Скоро мы с вами свяжемся!',
         failure: 'Что-то пошло не так!',
     };
-    function resetAndRemove() {
-        
-    }
     forms.forEach(form => postData(form));
     function postData(form) {
         form.addEventListener('submit', (e) => {
@@ -142,8 +139,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const request = new XMLHttpRequest();
             request.open('POST', 'server.php');
+            request.setRequestHeader('Content-Type', 'application/json');
             const formData = new FormData(form);
-            request.send(formData);
+            const object = {};
+            formData.forEach((key, value) => object[key] = value);
+            const json = JSON.stringify(object);
+            request.send(json);
             request.addEventListener('load', () => {
                 if(request.status === 200) {
                     console.log(request.response, '---', 'Data was loaded, thanks!');
@@ -163,5 +164,5 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
+    
 });
