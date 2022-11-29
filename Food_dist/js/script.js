@@ -87,7 +87,6 @@ window.addEventListener('DOMContentLoaded', () => {
 //! modal
     const buttons = document.querySelectorAll('[data-modal]');
     const modal = document.querySelector('.modal');
-    const close = document.querySelector('[data-close]');
     function addClassShow(event) {
         if(event.target && event.target.matches('[data-modal]')) {
             addShow();
@@ -110,11 +109,9 @@ window.addEventListener('DOMContentLoaded', () => {
     buttons.forEach(btn => {
         btn.addEventListener('click', addClassShow);
     });
-    close.addEventListener('click', addClassHide);
     modal.addEventListener('click', addClassHide);
     document.addEventListener('keydown', addClassHide);
     function openModalScroll(){
-        const body = document.querySelector('body');
         if(window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 2) { //!    window.scrollY  do not support safari IOS...
             addShow();
             window.removeEventListener('scroll', openModalScroll);
@@ -124,7 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
 //! form
     const forms = document.querySelectorAll('form');
     const statusMesseges = {
-        loading: 'Загрузка!',
+        loading: 'img/spinner.svg',
         success: 'Успех! Скоро мы с вами свяжемся!',
         failure: 'Что-то пошло не так!',
     };
@@ -132,10 +129,11 @@ window.addEventListener('DOMContentLoaded', () => {
     function postData(form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const statusMesseg = document.createElement('div');
+            const statusMesseg = document.createElement('img');
+            statusMesseg.src = statusMesseges.loading;
             statusMesseg.classList.add('status');
-            statusMesseg.textContent = statusMesseges.loading;
-            form.append(statusMesseg);
+            //form.append(statusMesseg);
+            form.insertAdjacentElement('afterend', statusMesseg);
 
             const request = new XMLHttpRequest();
             request.open('POST', 'server.php');
@@ -147,22 +145,43 @@ window.addEventListener('DOMContentLoaded', () => {
             request.send(json);
             request.addEventListener('load', () => {
                 if(request.status === 200) {
-                    console.log(request.response, '---', 'Data was loaded, thanks!');
-                    statusMesseg.textContent = statusMesseges.success;
+                    //statusMesseg.textContent = statusMesseges.success;
                     form.reset();
-                    setTimeout(() => {
-                        statusMesseg.remove();
-                    }, 4000);
-                }else {
-                    console.log('Sorry, try again! Please!');
-                    statusMesseg.textContent = statusMesseges.failure;
-                    form.reset();
-                    setTimeout(() => {
+                    setAnswerClient(statusMesseges.success);
+                    //setTimeout(() => {
                     statusMesseg.remove();
-                    }, 4000);
+                    //}, 4000);
+                }else {
+                    //statusMesseg.textContent = statusMesseges.failure;
+                    form.reset();
+                    setAnswerClient(statusMesseges.failure);
+                    //setTimeout(() => {
+                    statusMesseg.remove();
+                    //}, 4000);
                 }
             });
         });
     }
-    
+    function setAnswerClient(messege) {
+        const modalDialog = document.querySelector('.modal__dialog');
+        modalDialog.classList.add('hide');
+        addShow();
+        const thanksModal = document.createElement('div');
+        thanksModal.classList.add('modal__dialog', 'fade');
+        thanksModal.innerHTML = `
+        <div class="modal__content">
+            <div data-close class="modal__close">&times;</div>
+            <div class="modal__title">${messege}</div>
+        </div>
+        `;
+        document.querySelector('.modal').append(thanksModal);
+        setTimeout(() => {
+            thanksModal.remove();
+            modalDialog.classList.add('show', 'fade');
+            modalDialog.classList.remove('hide');
+            modal.classList.remove('show');
+            document.body.classList.remove('hidden');
+            modal.classList.add('hide');
+        }, 4000);
+    }
 });
