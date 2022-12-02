@@ -121,7 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
 //! form
     const forms = document.querySelectorAll('form');
     const statusMesseges = {
-        loading: 'img/spinner.svg',
+        srcStatus: 'img/spinner.svg',
         success: 'Успех! Скоро мы с вами свяжемся!',
         failure: 'Что-то пошло не так!',
     };
@@ -130,36 +130,48 @@ window.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const statusMesseg = document.createElement('img');
-            statusMesseg.src = statusMesseges.loading;
+            statusMesseg.src = statusMesseges.srcStatus;
             statusMesseg.classList.add('status');
             //form.append(statusMesseg);
             form.insertAdjacentElement('afterend', statusMesseg);
-
-            const request = new XMLHttpRequest();
-            request.open('POST', 'server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
+            // const request = new XMLHttpRequest();
+            // request.open('POST', 'server.php');
+            // request.setRequestHeader('Content-Type', 'application/json');
             const formData = new FormData(form);
             const object = {};
             formData.forEach((key, value) => object[key] = value);
-            const json = JSON.stringify(object);
-            request.send(json);
-            request.addEventListener('load', () => {
-                if(request.status === 200) {
-                    //statusMesseg.textContent = statusMesseges.success;
-                    form.reset();
-                    setAnswerClient(statusMesseges.success);
-                    //setTimeout(() => {
-                    statusMesseg.remove();
-                    //}, 4000);
-                }else {
-                    //statusMesseg.textContent = statusMesseges.failure;
-                    form.reset();
-                    setAnswerClient(statusMesseges.failure);
-                    //setTimeout(() => {
-                    statusMesseg.remove();
-                    //}, 4000);
-                }
+            // const json = JSON.stringify(object);
+            fetch('server.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify(object),
+            }).then(data => data.text()).then(data => {
+                console.log(data);
+                setAnswerClient(statusMesseges.success);
+                statusMesseg.remove();
+            }).catch(() => {
+                setAnswerClient(statusMesseges.failure);
+            }).finally(() => {
+                form.reset();
             });
+           //request.send(json);
+            //request.addEventListener('load', () => {
+                //if(request.status === 200) {
+                    //statusMesseg.textContent = statusMesseges.success;
+                    //form.reset();
+                   // setAnswerClient(statusMesseges.success);
+                    //setTimeout(() => {
+                    //statusMesseg.remove();
+                    //}, 4000);
+               // }else {
+                    //statusMesseg.textContent = statusMesseges.failure;
+                    //form.reset();
+                    //setAnswerClient(statusMesseges.failure);
+                    //setTimeout(() => {
+                    //statusMesseg.remove();
+                    //}, 4000);
+                //}
+            //});
         });
     }
     function setAnswerClient(messege) {
@@ -184,4 +196,11 @@ window.addEventListener('DOMContentLoaded', () => {
             modal.classList.add('hide');
         }, 4000);
     }
+//?? fetch('https://jsonplaceholder.typicode.com/posts', {
+    //?? method: 'POST',
+    //?? body: JSON.stringify({name: 'Alex'}),
+    //?? headers: {
+        //?? 'Content-type': 'application/json',
+        //?? }
+    //?? }).then(response => response.text()).then(text => console.log(text));
 });
