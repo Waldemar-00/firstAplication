@@ -1,0 +1,30 @@
+{
+  "name": "firstaplication",
+  "version": "1.0.0",
+  "description": "many projects in one, for learning",
+  "main": "script.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Waldemar-00/firstAplication.git"
+  },
+  "keywords": [
+    "learning",
+    "JS",
+    "HTML",
+    "CSS",
+    "PHP",
+    "project"
+  ],
+  "author": "uladzimir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Waldemar-00/firstAplication/issues"
+  },
+  "homepage": "https://github.com/Waldemar-00/firstAplication#readme",
+  "devDependencies": {
+    "json-server": "^0.17.1"
+  }
+}

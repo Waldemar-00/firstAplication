@@ -203,4 +203,6 @@ window.addEventListener('DOMContentLoaded', () => {
         //?? 'Content-type': 'application/json',
         //?? }
     //?? }).then(response => response.text()).then(text => console.log(text));
+
+    fetch('http://localhost:3000/menu').then(data => data.json()).then(json => console.log(json));
 });
