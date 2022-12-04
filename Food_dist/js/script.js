@@ -204,5 +204,5 @@ window.addEventListener('DOMContentLoaded', () => {
         //?? }
     //?? }).then(response => response.text()).then(text => console.log(text));
 
-    fetch('http://localhost:3000/menu').then(data => data.json()).then(json => console.log(json));
+    fetch('http://localhost:3000/menu').then(response => response.json()).then(json => console.log(json));
 });
