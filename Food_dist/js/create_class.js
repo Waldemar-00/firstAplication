@@ -31,37 +31,49 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
 }
-new createMenuItem(
-    'img/tabs/vegy.jpg',
-    'vegy', 
-    'Меню "Фитнес"',
-    ' Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов.Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-    9,
-    27, 
-    '.menu .container',
-    'menu__item',
-     ).render(); //! create object, еру method will work, and all will delete from memory!!!
-
-new createMenuItem(
-    "img/tabs/elite.jpg",
-    "elite", 
-    'Меню "Премиум"',
-    'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд.Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
-    12,
-    27, 
-    '.menu .container',
-    'menu__item', 
-    ).render(); //! create object, еру method will work, and all will delete from memory!!!
-
-new createMenuItem(
-    "img/tabs/post.jpg",
-    "post", 
-    'Меню "Постное"',
-    ' Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
-    7,
-    27, 
-    '.menu .container',
-    'menu__item',
-    'text__color',//? for test
-    ).render(); //! create object, еру method will work, and all will delete from memory!!!
+const getResource = async (url) => {
+    const rezsult = await fetch(url);
+    if(!rezsult.ok) {
+        throw new Error(`Could not fetch ${url}, status: ${rezsult.status}`);
+    }
+    return await rezsult.json();
+};
+getResource('http://localhost:3000/menu').then(response => {
+    response.forEach(({img, altImg, title, descr, price}) => {
+            new createMenuItem(img, altImg, title, descr, price, 27, '.menu .container', 'menu__item', 'text__color').render();
+    });
+    });
+// new createMenuItem(
+    // 'img/tabs/vegy.jpg',
+    // 'vegy', 
+    // 'Меню "Фитнес"',
+    // // ' Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов.Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+    // 9,
+    // 27, 
+    // '.menu .container',
+    // 'menu__item',
+    //  ).render(); //! create object, еру method will work, and all will delete from memory!!!
+// 
+// new createMenuItem(
+    // "img/tabs/elite.jpg",
+    // "elite", 
+    // 'Меню "Премиум"',
+    // // 'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд.Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+    // 12,
+    // 27, 
+    // '.menu .container',
+    // 'menu__item', 
+    // ).render(); //! create object, еру method will work, and all will delete from memory!!!
+// 
+// new createMenuItem(
+    // "img/tabs/post.jpg",
+    // "post", 
+    // 'Меню "Постное"',
+    // // ' Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
+    // 7,
+    // 27, 
+    // '.menu .container',
+    // 'menu__item',
+    // 'text__color',//? for test
+    // ).render(); //! create object, еру method will work, and all will delete from memory!!!
 });

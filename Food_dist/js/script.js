@@ -125,8 +125,18 @@ window.addEventListener('DOMContentLoaded', () => {
         success: 'Успех! Скоро мы с вами свяжемся!',
         failure: 'Что-то пошло не так!',
     };
-    forms.forEach(form => postData(form));
-    function postData(form) {
+    forms.forEach(form => bindPostData(form));
+
+    const postData = async (url, data) => {
+        const rezsult = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: data,
+        });
+        return await rezsult.json();
+    };
+
+    function bindPostData(form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const statusMesseg = document.createElement('img');
@@ -138,22 +148,19 @@ window.addEventListener('DOMContentLoaded', () => {
             // request.open('POST', 'server.php');
             // request.setRequestHeader('Content-Type', 'application/json');
             const formData = new FormData(form);
-            const object = {};
-            formData.forEach((key, value) => object[key] = value);
+            // const object = {};
+            // formData.forEach((key, value) => object[key] = value);
             // const json = JSON.stringify(object);
-            fetch('server.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify(object),
-            }).then(data => data.text()).then(data => {
+            const json = JSON.stringify(Object.fromEntries(formData.entries()));
+            postData('http://localhost:3000/requests', json).then(data => { 
                 console.log(data);
                 setAnswerClient(statusMesseges.success);
                 statusMesseg.remove();
-            }).catch(() => {
+                }).catch(() => {
                 setAnswerClient(statusMesseges.failure);
-            }).finally(() => {
+                }).finally(() => {
                 form.reset();
-            });
+                });
            //request.send(json);
             //request.addEventListener('load', () => {
                 //if(request.status === 200) {
