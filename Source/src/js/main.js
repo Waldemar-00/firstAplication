@@ -1,11 +1,44 @@
 window.addEventListener('DOMContentLoaded', () => {
     class Customizator {
     constructor() {
-
-    }
-    render() {
         this.blockButton = document.createElement('div');
         this.colorChange = document.createElement('input');
+
+        this.blockButton.addEventListener('click', (ev) => this.scaleChange(ev));
+        this.colorChange.addEventListener('input', (ev) => this.onColorChange(ev));
+
+    }
+
+    scaleChange(ev) {
+        let  scale;
+        const body = document.querySelector('body');
+        if(ev.target.value) {
+            scale = +ev.target.value.replace(/x/, '');
+        }
+        function recursyCheck(element) {
+            element.childNodes.forEach(node => {
+                    if(node.nodeName === '#text' && node.nodeValue.replace(/\s+/g, '').length > 0) {
+                        if(!node.parentNode.getAttribute('data-fontSize')) {
+                        const value = window.getComputedStyle(node.parentNode, null).fontSize;
+                        node.parentNode.setAttribute('data-fontSize', +value.replace(/px/, ''));
+                        node.parentNode.style.fontSize = node.parentNode.getAttribute('data-fontSize') * scale + 'px';
+                        }else {
+                        node.parentNode.style.fontSize = node.parentNode.getAttribute('data-fontSize') * scale + 'px';
+                        }
+                    }else {
+                        recursyCheck(node);
+                    }
+            });
+        }
+        recursyCheck(body);
+    }
+
+    onColorChange(ev) {
+        const body = document.querySelector('body');
+        body.style.backgroundColor = ev.target.value;
+    }
+
+    render() {
         const button_1 = document.createElement('input');
         const button_2 = document.createElement('input');
         const panel = document.createElement('div');
