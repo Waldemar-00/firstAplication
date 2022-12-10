@@ -26,5 +26,8 @@
   "homepage": "https://github.com/Waldemar-00/firstAplication#readme",
   "devDependencies": {
     "json-server": "^0.17.1"
+  },
+  "dependencies": {
+    "axios": "^1.2.1"
   }
 }

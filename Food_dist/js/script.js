@@ -2,33 +2,33 @@
 window.addEventListener('DOMContentLoaded', () => {
 //! tabs
     const tabheader__item = document.querySelectorAll('.tabheader__item');
-    const tabcontent = document.querySelectorAll('.tabcontent');
+    // const tabcontent = document.querySelectorAll('.tabcontent');
     const tabheader__items = document.querySelector('.tabheader__items');
 
-    function hideTabContent() {
-        tabcontent.forEach(tab => {
-            tab.classList.remove('show', 'fade' );
-            tab.classList.add('hide');
-        });
-    }
-    function showTabContent(index = 0) {
-        tabcontent[index].classList.remove('hide');
-        tabcontent[index].classList.add('show');
-    }
-    function removeClassActive() {
-        tabheader__item.forEach(tab => {
-        tab.classList.remove('tabheader__item_active');
-        });
-    }
-    function addClassActive(index = 0) {
-        tabheader__item[index].classList.add('tabheader__item_active');
-    }
-    function addClassFade(index) {
-        tabcontent[index].classList.add('fade');
-    }
+    // function hideTabContent() {
+        // tabcontent.forEach(tab => {
+            // tab.classList.remove('show', 'fade' );
+            // tab.classList.add('hide');
+        // });
+    // }
+    // function showTabContent(index = 0) {
+        // tabcontent[index].classList.remove('hide');
+        // tabcontent[index].classList.add('show');
+    // }
+    // function removeClassActive() {
+        // tabheader__item.forEach(tab => {
+        // tab.classList.remove('tabheader__item_active');
+        // });
+    // }
+    // function addClassActive(index = 0) {
+        // // tabheader__item[index].classList.add('tabheader__item_active');
+    // }
+    // function addClassFade(index) {
+        // tabcontent[index].classList.add('fade');
+    // }
 
-    hideTabContent(); showTabContent();
-    removeClassActive(); addClassActive();
+    // hideTabContent(); showTabContent();
+    // removeClassActive(); addClassActive();
 
     function clickOnParent(event) {
         if(event.target && event.target.classList.contains('tabheader__item')) {
@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     tabheader__items.addEventListener('click', clickOnParent);
 //! timer
-    const deadLine = '2022-12-1';
+    const deadLine = '2022-12-31';
     function getTimeRemaining(endDate) {
         const timeNow = Date.now();
         const endTime = new Date(endDate).getTime();
@@ -153,7 +153,6 @@ window.addEventListener('DOMContentLoaded', () => {
             // const json = JSON.stringify(object);
             const json = JSON.stringify(Object.fromEntries(formData.entries()));
             postData('http://localhost:3000/requests', json).then(data => { 
-                console.log(data);
                 setAnswerClient(statusMesseges.success);
                 statusMesseg.remove();
                 }).catch(() => {
