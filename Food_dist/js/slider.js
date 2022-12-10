@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const total = document.querySelector('#total');
     const sliderNext = document.querySelector('.offer__slider-next');
     const offerSlides = document.querySelectorAll('.offer__slide');
+    
     slider(sliderPrev, current, total, sliderNext, offerSlides);
     function slider(sliderPrev, current, total, sliderNext, offerSlides) {
     offerSlides.forEach((slide, index) => {
