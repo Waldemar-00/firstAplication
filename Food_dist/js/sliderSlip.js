@@ -39,7 +39,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     let offset = 0;
-    let offerLength = offerSlides.length - 1;
     function increment() {
         if(current.innerHTML < total.innerHTML)current.innerHTML = '0' + (+current.innerHTML + 1);
         else current.innerHTML = '01';
@@ -51,13 +50,13 @@ window.addEventListener('DOMContentLoaded', () => {
         dotsOpacity();
     }
     function next() {
-        if(offset == width.slice(0, width.length - 2) * (offerLength)) offset = 0;
+        if(offset == width.slice(0, width.length - 2) * (offerSlides.length - 1)) offset = 0;
         else offset += +width.slice(0, width.length - 2);
         slidersInner.style.transform = `translateX(-${offset}px)`;
         increment();
         }
     function prev() {
-        if(offset == 0) offset += +width.slice(0, width.length - 2) * (offerLength);
+        if(offset == 0) offset += +width.slice(0, width.length - 2) * (offerSlides.length - 1);
         else offset -= width.slice(0, width.length - 2);
         slidersInner.style.transform = `translateX(-${offset}px)`;
         decrement();
@@ -65,17 +64,24 @@ window.addEventListener('DOMContentLoaded', () => {
     sliderNext.addEventListener('click', next);
     sliderPrev.addEventListener('click', prev);
 
-    // dots.forEach(dot => { 
-        // dot.addEventListener('click', (e) => {
-            // const valueAttribute = e.target.getAttribute('data-slide-to');
-            // if(valueAttribute < total.innerHTML) {
-                // offerLength = valueAttribute - 1;
-                // prev();
-            // }
-            // else {
-                // offerLength = valueAttribute - 1;
-                // next();
-            // } 
-        // });
-    // });
+    dots.forEach(dot => { 
+        dot.addEventListener('click', (e) => {
+            const valueAttribute = e.target.getAttribute('data-slide-to');
+            let index;
+            switch(+valueAttribute) {
+                case 3: index = 0;
+                    break;
+                case 4: index = 1;
+                    break;
+                case 1: index = 2; 
+                    break;
+                case 2: index = 3;
+            }
+            offset = width.slice(0, width.length - 2) * index;
+            slidersInner.style.transform = `translateX(-${offset}px)`;
+            current.innerHTML = '0' + valueAttribute;
+            dots.forEach(dot => dot.style.opacity = 0.5);
+            dots[valueAttribute - 1].style.opacity = 1;
+        });
+    });
 });
