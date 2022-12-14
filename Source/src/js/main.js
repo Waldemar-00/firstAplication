@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
                         recursyCheck(node);
                     }
             });
-        }
+        };
         recursyCheck(body);
         localStorage.setItem('scale', this.scale);
     }
