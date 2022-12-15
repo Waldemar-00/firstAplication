@@ -49,15 +49,18 @@ window.addEventListener('DOMContentLoaded', () => {
         else current.innerHTML = total.innerHTML;
         dotsOpacity();
     }
+    function replaceToNumber(str) {
+        return +str.replace(/\D/g, '');
+    }
     function next() {
-        if(offset == width.slice(0, width.length - 2) * (offerSlides.length - 1)) offset = 0;
-        else offset += +width.slice(0, width.length - 2);
+        if(offset == replaceToNumber(width) * (offerSlides.length - 1)) offset = 0;
+        else offset += replaceToNumber(width);
         slidersInner.style.transform = `translateX(-${offset}px)`;
         increment();
         }
     function prev() {
-        if(offset == 0) offset += +width.slice(0, width.length - 2) * (offerSlides.length - 1);
-        else offset -= width.slice(0, width.length - 2);
+        if(offset == 0) offset += replaceToNumber(width) * (offerSlides.length - 1);
+        else offset -= replaceToNumber(width);
         slidersInner.style.transform = `translateX(-${offset}px)`;
         decrement();
         }
@@ -77,7 +80,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     break;
                 case 2: index = 3;
             }
-            offset = width.slice(0, width.length - 2) * index;
+            offset = replaceToNumber(width) * index;
             slidersInner.style.transform = `translateX(-${offset}px)`;
             current.innerHTML = '0' + valueAttribute;
             dots.forEach(dot => dot.style.opacity = 0.5);
