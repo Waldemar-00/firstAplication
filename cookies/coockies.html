@@ -24,7 +24,42 @@
             "theme": "classic",
             "position": "top",
             "static": true,
-            "type": "opt-in"
+            "type": "opt-in",
+            onInitialise: function (status) {
+                var type = this.options.type;
+                var didConsent = this.hasConsented();
+                if (type == 'opt-in' && didConsent) {
+                    // enable cookies
+                    alert('Enable cookies, thanks!;-)')
+                }
+                if (type == 'opt-out' && !didConsent) {
+                    // disable cookies
+                    alert('Disable cookies ((')
+                }
+            },
+            onStatusChange: function (status, chosenBefore) {
+                var type = this.options.type;
+                var didConsent = this.hasConsented();
+                if (type == 'opt-in' && didConsent) {
+                    // enable cookies
+                    alert('Enable cookies, thanks!;-)')
+                }
+                if (type == 'opt-out' && !didConsent) {
+                    // disable cookies
+                    alert('Disable cookies ((')
+                }
+            },
+            onRevokeChoice: function () {
+                var type = this.options.type;
+                if (type == 'opt-in') {
+                    // disable cookies
+                    alert('Disable cookies ((')
+                }
+                if (type == 'opt-out') {
+                    // enable cookies
+                    alert('Enable cookies, thanks!;-)')
+                }
+            }
         });
     </script>
 </body>

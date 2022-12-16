@@ -30,18 +30,18 @@ window.addEventListener('DOMContentLoaded', () => {
     // hideTabContent(); showTabContent();
     // removeClassActive(); addClassActive();
 
-    function clickOnParent(event) {
-        if(event.target && event.target.classList.contains('tabheader__item')) {
-            tabheader__item.forEach((tab, index) => {
-                if(event.target === tab) {
-                    hideTabContent(); showTabContent(index);
-                    removeClassActive(); addClassActive(index);
-                    addClassFade(index);
-                }
-            });
-        }
-    }
-    tabheader__items.addEventListener('click', clickOnParent);
+    // function clickOnParent(event) {
+        // if(event.target && event.target.classList.contains('tabheader__item')) {
+            // tabheader__item.forEach((tab, index) => {
+                // if(event.target === tab) {
+                    // hideTabContent(); showTabContent(index);
+                    // removeClassActive(); addClassActive(index);
+                    // addClassFade(index);
+                // }
+            // });
+        // }
+    // }
+    // tabheader__items.addEventListener('click', clickOnParent);
 //! timer
     const deadLine = '2022-12-31';
     function getTimeRemaining(endDate) {
