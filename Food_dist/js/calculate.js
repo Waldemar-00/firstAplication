@@ -4,8 +4,29 @@ window.addEventListener('DOMContentLoaded', () => {
     let weight,
         height,
         age,
-        sex = 'female',
+        sex,
+        ratio;
+    if(localStorage.getItem('sex'))sex = localStorage.getItem('sex');
+    else {
+        sex = 'female';
+        localStorage.setItem('sex', sex);
+    }
+    if(localStorage.getItem('ratio'))ratio = localStorage.getItem('ratio');
+    else {
         ratio = 1.375;
+        localStorage.setItem('ratio', ratio);
+    }
+
+function setDataInDiv(selector, activeClass, valueLS, dataOrId ) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(elem => {
+        elem.classList.remove(activeClass);
+        if(elem.getAttribute(dataOrId) === localStorage.getItem(valueLS))elem.classList.add(activeClass);
+    });
+}
+setDataInDiv('.calculating__choose-item', 'calculating__choose-item_active', 'sex', 'id');
+setDataInDiv('[data-ratio]', 'calculating__choose-item_active', 'ratio', 'data-ratio');
+
     function calculate() {
         if(!weight || !height || !age || !sex || !ratio) {
             rezult.textContent = '0000';
@@ -23,8 +44,10 @@ window.addEventListener('DOMContentLoaded', () => {
         elements.forEach(elem => elem.addEventListener('click', (e) => {
             if(e.target.getAttribute('data-ratio')) {
                 ratio = e.target.getAttribute('data-ratio');
+                localStorage.setItem('ratio', ratio);
             } else {
                 sex = e.target.getAttribute('id');
+                localStorage.setItem('sex', sex);
             }
             elements.forEach(elem => {
                 elem.classList.remove(activeClass);
@@ -39,6 +62,10 @@ window.addEventListener('DOMContentLoaded', () => {
     function getDynamicInformation(selector) {
         const input = document.querySelector(selector);
         input.addEventListener('input', (e) => {
+            if(input.value.match(/\D/g)) {
+                input.style.border = '2px solid red';
+            } else input.style.border = 'none';
+
             switch (e.target.getAttribute('id')) {
                 case 'weight': weight = input.value;
                     break;
