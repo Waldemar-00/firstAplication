@@ -1,9 +1,9 @@
 'user strict';
 window.addEventListener('DOMContentLoaded', () => {
 //! tabs
-    const tabheader__item = document.querySelectorAll('.tabheader__item');
+    //const tabheader__item = document.querySelectorAll('.tabheader__item');
     // const tabcontent = document.querySelectorAll('.tabcontent');
-    const tabheader__items = document.querySelector('.tabheader__items');
+    //const tabheader__items = document.querySelector('.tabheader__items');
 
     // function hideTabContent() {
         // tabcontent.forEach(tab => {
@@ -152,7 +152,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // formData.forEach((key, value) => object[key] = value);
             // const json = JSON.stringify(object);
             const json = JSON.stringify(Object.fromEntries(formData.entries()));
-            postData('http://localhost:3000/requests', json).then(data => { 
+            postData('http://localhost:3000/requests', json).then(() => { 
                 setAnswerClient(statusMesseges.success);
                 statusMesseg.remove();
                 }).catch(() => {
