@@ -13,7 +13,7 @@ const data = [
         id: 'circle',
         tag: 'span'
     }
-]
+];
 
 data.forEach(blockObj => {
     const block = document.createElement(blockObj.tag);
